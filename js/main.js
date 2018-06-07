@@ -20,14 +20,24 @@ $(function(){
             }
 
             httpReq.onsuccess = function(response) {
-
+                
+                //parsowanie danych
                 let jsonObj = JSON.parse(response);
                 console.log(jsonObj);
                 
+                //tworze diva
                 $('.container').append('<div id="dane-programisty"></div>');
                 
+                
+                //wypelniam diva textem
                 $('#dane-programisty').text(jsonObj.imie + ' ' + jsonObj.nazwisko + ' ' + jsonObj.zawod + ' ' + jsonObj.firma);
                 
+                //wylaczam btn po akcji
+                setTimeout(function () { disableButton(); }, 0);
+                
+                function disableButton() {
+                    $("#download").prop('disabled', true);
+                };
 
             }
 
